@@ -14,7 +14,8 @@ library(palmerpenguins)
 #| label: fig-scatter
 #| fig-cap: "A scatterplot of bill length and bill depth in three species of Palmer penguins"
 #| fig-width: 6
-#| fig-asp. 0.8
+#| fig-asp: 0.8
+
 library(tidyverse)
 library(palmerpenguins)
 
