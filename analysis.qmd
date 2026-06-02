@@ -1,0 +1,33 @@
+---
+title: "Untitled"
+format: html
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(palmerpenguins)
+```
+
+
+```{r}
+#| label: fig-scatter
+#| fig-cap: "A scatterplot of bill length and bill depth in three species of Palmer penguins"
+#| fig-width: 6
+#| fig-asp. 0.8
+library(tidyverse)
+library(palmerpenguins)
+
+pal <- c(
+  "Adelie"    = "#FF8C00",
+  "Chinstrap" = "#A034F0",
+  "Gentoo"    = "#159090"
+)
+
+penguins |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(colour = species)) +
+  scale_colour_manual(values = pal) +
+  theme_minimal()
+```
+
