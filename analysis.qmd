@@ -23,6 +23,10 @@ This is not code, this is just text  library(tidyverse)
 library(tidyverse)
 library(palmerpenguins)
 library(ggiraph)
+library(janitor)
+
+penguins <- palmerpenguins::penguins |> clean_names()
+
 ```
 
 More text here is my @fig-scatter reference to the figure below.
