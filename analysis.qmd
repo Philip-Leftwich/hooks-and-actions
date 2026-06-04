@@ -1,37 +1,67 @@
 ---
-title: "Untitled"
+title: "analysis"
 format:
   html:
     embed-resources: true
 ---
 
+# Title
+Here is some plain text
+
+## Subtitle
+
+**Here is some bold text** and *here is some italic text*.
+
+[Here is a link to RStudio](https://www.rstudio.com/)
+
+### Subsubtitle
+
+This is not code, this is just text  library(tidyverse)
+
 ```{r}
 #| include: false
 library(tidyverse)
 library(palmerpenguins)
+library(ggiraph)
 ```
 
+More text here is my @fig-scatter reference to the figure below.
 
 ```{r}
 #| label: fig-scatter
 #| fig-cap: "A scatterplot of bill length and bill depth in three species of Palmer penguins"
+#| eval: true
+#| echo: false
 #| fig-width: 6
 #| fig-asp: 0.8
 
-library(tidyverse)
-library(palmerpenguins)
+library(ggiraph)
 
 pal <- c(
-  
   "Adelie"    = "#FF8C00",
   "Chinstrap" = "#A034F0",
   "Gentoo"    = "#159090"
 )
 
-penguins |>
+p <- penguins |>
+  mutate(
+    tooltip = paste0(
+      "Body mass: ", body_mass_g, " g\n",
+      "Flipper length: ", flipper_length_mm, " mm"
+    ),
+    data_id = row_number()
+  ) |>
   ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
-  geom_point(aes(colour = species)) +
+  geom_point_interactive(aes(colour = species, tooltip = tooltip, data_id = data_id)) +
   scale_colour_manual(values = pal) +
   theme_minimal()
+
+girafe(
+  ggobj = p,
+  options = list(
+    opts_hover(css = "fill:orange;stroke:orange;r:1pt;opacity:.9;"),
+    opts_hover_inv(css = "opacity:0.2;")
+  )
+)
 ```
 
