@@ -6,7 +6,7 @@ name: Render penguins analysis
 # Adjust the branch name below if yours is not 'main'.
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
 
 jobs:
   render:
